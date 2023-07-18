@@ -2,29 +2,13 @@
 
 Billetera virtual con diferentes funcionalidades para gestión de monedas: depositar, retirar, exchange. Además cuenta con impresión del balance por cada moneda operada y un reporte de cada transaccion realizada.
 
-![Alt text](image.png)
-
-![Alt text](image-1.png)
-
-![Alt text](image-2.png)
-
-![Alt text](image-3.png)
-
-![Alt text](image-4.png)
-
-![Alt text](image-5.png)
-
-![Alt text](image-6.png)
-
-![Alt text](image-7.png)
-
 ## Tabla de Contenidos
 
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Características](#características)
-- [Capturas de Pantalla](#capturas-de-pantalla)
 - [Autor](#autor)
+- [Capturas de Pantalla](#capturas-de-pantalla)
 
 ## Instalación
 
@@ -41,12 +25,12 @@ La billetera se puede utilizar seleccionando cualquier opcion para gestión del 
 ## Características
 
 Elproyecto ha sido desarrollado utilizando React Native, Redux, Javascript, React Navigation y Expo cli.
+## Autor
+
+Ing. Freddy Lezama, Software Developer.
 
 ## Capturas de Pantalla
 
 Si es relevante, agrega algunas capturas de pantalla del proyecto en acción.
 
-
-## Autor
-
-Ing. Freddy Lezama, Software Developer.
+![Alt text](image.png) ![Alt text](image-1.png) ![Alt text](image-2.png) ![Alt text](image-3.png) ![Alt text](image-4.png) ![Alt text](image-5.png) ![Alt text](image-6.png) ![Alt text](image-7.png)
