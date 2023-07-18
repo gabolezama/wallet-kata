@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 }
 
 export const rootReducer = (state = INITIAL_STATE, action) => {
-    console.log(action);
   switch (action.type) {
     case 'WITHDRAWAL_SUCCESS':
       return {
