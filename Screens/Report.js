@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import TrxItem from '../Components/TrxItem'
 
 export default function Report() {
-    const transactions = useSelector(state => state.transactions)
+    const transactions = useSelector(state => state.transactions);
 
   return (
     <View>

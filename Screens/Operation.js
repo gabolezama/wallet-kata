@@ -3,18 +3,20 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-nativ
 import { useDispatch } from 'react-redux';
 import { exchange, operate } from '../Store/Actions';
 import CustomButton from '../Components/CustomButton';
+import CurrencySelector from '../Components/CurrencySelector';
 
-export default function Amount(props) {
-
+export default function Operation(props) {
+console.log('---->', props.route);
     const { route: { params: {operation: operation} } } = props;
 
     const dispatcher = useDispatch();
 
-    const operationText = operation === 'deposit'? 'Depositar': operation === 'report'? 'Reporte' : 'Retirar';
+
 
     const [currency, setCurrency] = useState('');
     const [currencyTo, setCurrencyTo] = useState('');
     const [inputValue, setInputValue] = useState('');
+    const [showCurrencies, setShowCurrencies] = useState('');
 
     const handleInputChange = (text) => {
         // Solo permitir números y el punto decimal
@@ -23,18 +25,8 @@ export default function Amount(props) {
     };
     return (
         <View style={styles.container}>
-            <Text>Indique tipo de moneda a {operation === 'deposit'? 'depositar' : operation === 'exchange'? 'cambiar' : 'extraer'}</Text>
-            <View style={styles.currencySelection}>
-                <CustomButton text={'ARS'} execute={() =>{ setCurrency('ARS'); setInputValue('0'); }}/>
-                <CustomButton text={'USD'} execute={() =>{ setCurrency('USD'); setInputValue('0'); }}/>
-                <CustomButton text={'EUR'} execute={() =>{ setCurrency('EUR'); setInputValue('0'); }}/>
-            </View>
-            {operation === 'exchange' && currency !== '' &&
-            <View style={styles.currencySelection}>
-                <CustomButton text={'ARS'} execute={() =>{ setCurrencyTo('ARS'); setInputValue('0'); }}/>
-                <CustomButton text={'USD'} execute={() =>{ setCurrencyTo('USD'); setInputValue('0'); }}/>
-                <CustomButton text={'EUR'} execute={() =>{ setCurrencyTo('EUR'); setInputValue('0'); }}/>
-            </View>}
+            <Text>Indique tipo de moneda a {operation === 'deposit'? 'DEPOSITAR' : operation === 'exchange'? 'CAMBIAR' : 'EXTRAER'}</Text>
+
             { currency && operation !== 'exchange' && <Text>LA MONEDA SELLECCIONADE ES: '{currency}'</Text>}
             { currency && currencyTo && operation === 'exchange' && <Text>EL CAMBIO SERÁ DE '{currency}' A '{currencyTo}'</Text>}
             <TextInput
@@ -44,6 +36,7 @@ export default function Amount(props) {
                 keyboardType="numeric"
                 editable={operation === 'exchange'? currency !== '' && currencyTo !== '' : currency !== ''}
             />
+            {!(currency && currencyTo && !showCurrencies) && <CustomButton text={showCurrencies? 'OCULTAR LISTA' : 'VER LISTA'} execute={() => setShowCurrencies(!showCurrencies)} />}
             <CustomButton 
                 text={operation === 'deposit'? 'Depositar': operation === 'exchange'? 'Cambiar' : 'Retirar'} 
                 execute={operation !== 'exchange'? 
@@ -51,6 +44,7 @@ export default function Amount(props) {
                 () => { dispatcher( exchange(operation, currency, currencyTo, inputValue || 0) ); props.navigation.navigate('home');}
             }
             />
+            { showCurrencies && <CurrencySelector execute={currency === '' ? setCurrency : operation === 'exchange'? setCurrencyTo : null}/>}
         </View>
     )
 }

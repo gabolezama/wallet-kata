@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import Balance from '../Components/Balance';
 import { useSelector } from 'react-redux';
 import CustomButton from '../Components/CustomButton';
 
 export default function Home(props) {
-  const loading = useSelector((state)=> state.loading)
+    const loading = useSelector((state)=> state.loading)
+    const state = useSelector((state)=> state);
+    console.log(state);
   return (
     <View style={styles.container}>
 
@@ -16,7 +18,6 @@ export default function Home(props) {
         }
 
         <View style={styles.subcontainer}>
-            <Balance/>
             <Text>Seleccione una opcion: </Text>
 
             <CustomButton text={'Depositar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'deposit'})}}/>

@@ -25,12 +25,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: 90,
+        height: 60,
         borderWidth: 1,
         borderColor: '#000',
         borderRadius: 5,
         paddingHorizontal: 10,
-        marginBottom: 10,
         fontSize: 36
     }
 })
