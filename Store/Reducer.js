@@ -21,7 +21,15 @@ export const rootReducer = (state = INITIAL_STATE, action) => {
         ...state,
         id: state.id + 1,
         [action.payload.currency]: state[action.payload.currency] + parseFloat(action.payload.qty),
-        transactions: [...state.transactions, {id: state.id + 1, operacion: 'depoosito', cantidad: action.payload.qty, moneda: action.payload.currency}]
+        transactions: [...state.transactions, {id: state.id + 1, operacion: 'deposito', cantidad: action.payload.qty, moneda: action.payload.currency}]
+      };
+    case 'EXCHANGE_SUCCESS':
+      return {
+        ...state,
+        id: state.id + 1,
+        [action.payload.currencyTo]: state[action.payload.currencyTo] + parseFloat(action.payload.exchangedQty),
+        [action.payload.currency]: state[action.payload.currency] - parseFloat(action.payload.qty),
+        transactions: [...state.transactions, {id: state.id + 1, operacion: 'exchange', cantidad: action.payload.exchangedQty, moneda: `De ${action.payload.currency} a ${action.payload.currencyTo}`}]
       };
     case 'SET_LOADER':
       return {

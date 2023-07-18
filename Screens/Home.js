@@ -21,6 +21,7 @@ export default function Home(props) {
 
             <CustomButton text={'Depositar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'deposit'})}}/>
             <CustomButton text={'Retirar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'withdraw'})}}/>
+            <CustomButton text={'Exchange'} execute={() =>{ props.navigation.navigate('amount', {operation: 'exchange'})}}/>
             <CustomButton text={'Reporte'} execute={() =>{ props.navigation.navigate('report', {operation: 'report'})}}/>
         </View>
     </View>
