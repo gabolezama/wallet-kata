@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
-import Balance from '../Components/Balance';
 import { useSelector } from 'react-redux';
 import CustomButton from '../Components/CustomButton';
 
 export default function Home(props) {
     const loading = useSelector((state)=> state.loading);
-
-    const[showBalance, setShowBalance] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -26,7 +23,6 @@ export default function Home(props) {
             <CustomButton text={'Balance'} execute={() =>{ props.navigation.navigate('balance', {operation: 'balance'})}}/>
             <CustomButton text={'Reporte'} execute={() =>{ props.navigation.navigate('report', {operation: 'report'})}}/>
         </View>
-        {showBalance && <Balance/>}
     </View>
   )
 }
