@@ -3,11 +3,18 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 export default function Balance() {
-    const balance = useSelector((state) => state.balance)
+    const ars = useSelector((state) => state.ARS);
+    const usd = useSelector((state) => state.USD);
+    const eur = useSelector((state) => state.EUR);
 
   return (
     <View>
-      <Text style={styles.input}>{balance}</Text>
+      <Text>BALANCE EN ARS: </Text>
+      <Text style={styles.input}>{ars}</Text>
+      <Text>BALANCE EN USD: </Text>
+      <Text style={styles.input}>{usd}</Text>
+      <Text>BALANCE EN EUR: </Text>
+      <Text style={styles.input}>{eur}</Text>
     </View>
   )
 }

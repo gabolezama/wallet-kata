@@ -5,11 +5,15 @@ import { operate } from '../Store/Actions';
 import CustomButton from '../Components/CustomButton';
 
 export default function Amount(props) {
+
     const { route: { params: {operation: operation} } } = props;
 
     const dispatcher = useDispatch();
 
-    const [inputValue, setInputValue] = useState('0');
+    const operationText = operation === 'deposit'? 'Depositar': operation === 'report'? 'Reporte' : 'Retirar';
+
+    const [currency, setCurrency] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (text) => {
         // Solo permitir números y el punto decimal
@@ -20,18 +24,22 @@ export default function Amount(props) {
         <View style={styles.container}>
             <Text>Indique tipo de moneda a {operation === 'deposit'? 'depositar' : 'extraer'}</Text>
             <View style={styles.currencySelection}>
-                <CustomButton text={'ARS'} execute={() =>{ dispatcher( operate(operation, inputValue || 0) ); props.navigation.navigate('home');}}/>
-                <CustomButton text={'USD'} execute={() =>{ dispatcher( operate(operation, inputValue || 0) ); props.navigation.navigate('home');}}/>
-                <CustomButton text={'EUR'} execute={() =>{ dispatcher( operate(operation, inputValue || 0) ); props.navigation.navigate('home');}}/>
+                <CustomButton text={'ARS'} execute={() =>{ setCurrency('ARS'); setInputValue('0'); }}/>
+                <CustomButton text={'USD'} execute={() =>{ setCurrency('USD'); setInputValue('0'); }}/>
+                <CustomButton text={'EUR'} execute={() =>{ setCurrency('EUR'); setInputValue('0'); }}/>
             </View>
-
+            { currency && <Text>LA MONEDA SELLECCIONADE ES: {currency}</Text>}
             <TextInput
                 style={styles.input}
                 value={inputValue}
                 onChangeText={handleInputChange}
                 keyboardType="numeric"
+                editable={currency !== ''}
             />
-            <CustomButton text={operation} execute={() =>{ dispatcher( operate(operation, inputValue || 0) ); props.navigation.navigate('home');}}/>
+            <CustomButton 
+                text={operation === 'deposit'? 'Depositar': 'Retirar'} 
+                execute={() => { dispatcher( operate(operation, currency, inputValue || 0) ); props.navigation.navigate('home');}}
+            />
         </View>
     )
 }

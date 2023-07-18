@@ -1,11 +1,11 @@
-export const operate = function( operation, qty ) {
+export const operate = function( operation, currency, qty ) {
     return async (dispatch) => {
         try {
 
         dispatch({ type: 'SET_LOADER', payload: true });
 
         setTimeout(async() =>{
-            dispatch({ type: operation === 'deposit'? 'DEPOSIT_SUCCESS' : 'WITHDRAWAL_SUCCESS', payload: qty});
+            dispatch({ type: operation === 'deposit'? 'DEPOSIT_SUCCESS' : 'WITHDRAWAL_SUCCESS', payload:{ currency, qty }});
             dispatch({ type: 'SET_LOADER', payload: false });
         }, 3000)
 
