@@ -24,13 +24,13 @@ La billetera se puede utilizar seleccionando cualquier opcion para gestión del 
 
 ## Características
 
-Elproyecto ha sido desarrollado utilizando React Native, Redux, Javascript, React Navigation y Expo cli.
+El proyecto ha sido desarrollado utilizando React Native, Redux, Javascript, React Navigation y Expo cli.
 ## Autor
 
-Ing. Freddy Lezama, Software Developer.
+Ing. Freddy Lezama, Software Developer (stack MERN).
 
 ## Capturas de Pantalla
 
-Si es relevante, agrega algunas capturas de pantalla del proyecto en acción.
+Capturas de pantalla a modo de demostración:
 
 ![Alt text](image.png) ![Alt text](image-1.png) ![Alt text](image-2.png) ![Alt text](image-3.png) ![Alt text](image-4.png) ![Alt text](image-5.png) ![Alt text](image-6.png) ![Alt text](image-7.png)
