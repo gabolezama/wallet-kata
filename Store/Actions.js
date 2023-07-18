@@ -13,7 +13,7 @@ export const operate = function( operation, currency, qty ) {
 
         } catch (error) {
             console.log('Error: ' + error);
-            dispatch({ type: operation === 'deposit'? 'DEPOSIT_FAIL' : 'WITHDRAWAL_FAIL', payload: `Error: ${error.stack}` });
+            dispatch({ type: 'OPERATION_FAIL', payload: `Error en operacion ${operation}` });
         }
     };
 };
@@ -35,26 +35,7 @@ export const exchange = function( operation, currency, currencyTo, qty ) {
         
         } catch (error) {
             console.log('Error: ' + error);
-            dispatch({ type: 'EXCHANGE_FAIL', payload: `Error: ${error.stack}` });
-        }
-    };
-};
-
-export const getAllCurrencies = async function() {
-    return async (dispatch) => {
-        try {
-
-        dispatch({ type: 'SET_LOADER', payload: true });
-
-        const response = await fetch('https://v6.exchangerate-api.com/v6/9027859025ec364d7439b614/latest/USD')
-        const respJson = await response.json();
-
-        dispatch({ type: 'GET_ALL_CURRENCIES', payload: respJson});
-        dispatch({ type: 'SET_LOADER', payload: false });
-        
-        } catch (error) {
-            console.log('Error: ' + error);
-            dispatch({ type: 'EXCHANGE_FAIL', payload: `Error: ${error.stack}` });
+            dispatch({ type: 'OPERATION_FAIL', payload: `Error en operacion ${operation}` });
         }
     };
 };

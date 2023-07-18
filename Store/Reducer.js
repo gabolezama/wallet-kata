@@ -2,11 +2,12 @@ const INITIAL_STATE = {
     id: 0,
     currencies: {},
     transactions: [],
-    loading: false
+    loading: false,
+    error: ''
 }
 
 export const rootReducer = (state = INITIAL_STATE, action) => {
-    console.log('---------->', action);
+    console.log(action);
   switch (action.type) {
     case 'WITHDRAWAL_SUCCESS':
       return {
@@ -38,6 +39,11 @@ export const rootReducer = (state = INITIAL_STATE, action) => {
             [action.payload.currency]: (state.currencies[action.payload.currency] || 0) - parseFloat(action.payload.qty),
         },
         transactions: [...state.transactions, {id: state.id + 1, operation: 'exchange', amount: action.payload.exchangedQty, currency: `De ${action.payload.currency} a ${action.payload.currencyTo}`}]
+      };
+    case 'OPERATION_FAIL':
+      return {
+        ...state,
+        error: action.payload
       };
     case 'SET_LOADER':
       return {
