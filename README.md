@@ -2,6 +2,22 @@
 
 Billetera virtual con diferentes funcionalidades para gestión de monedas: depositar, retirar, exchange. Además cuenta con impresión del balance por cada moneda operada y un reporte de cada transaccion realizada.
 
+![Alt text](image.png)
+
+![Alt text](image-1.png)
+
+![Alt text](image-2.png)
+
+![Alt text](image-3.png)
+
+![Alt text](image-4.png)
+
+![Alt text](image-5.png)
+
+![Alt text](image-6.png)
+
+![Alt text](image-7.png)
+
 ## Tabla de Contenidos
 
 - [Instalación](#instalación)
@@ -20,7 +36,7 @@ Asegúrate de tener [Node.js](https://nodejs.org/) instalado.
 
 ## Uso
 
-La billetera se puede utilizar seleccionando cualquier opcion para gestión del dinero, el cual por ahora no valida si hay fondos disponibles, sencillamente ejecutas las acciones requeridas. Si alguna moneda no cuenta con fondos probablemente al 'retirar' o 'cambiar' quedará en negativo. La idea del proyecto es que las operaciones matemáticas y la logica de la aplicacion funcionen apropiadamente y puedan rendir un balance y un reporte en base a las transacciones realizadas con ella a lo largo del tiempo.
+La billetera se puede utilizar seleccionando cualquier opcion para gestión del dinero, el cual por ahora no valida si hay fondos disponibles, sencillamente ejecuta las acciones requeridas. Si alguna moneda no cuenta con fondos probablemente al 'retirar' o 'cambiar' quedará en negativo. La idea del proyecto es que las operaciones matemáticas y la logica de la aplicacion funcionen apropiadamente y puedan rendir un balance y un reporte en base a las transacciones realizadas con ella a lo largo del tiempo.
 
 ## Características
 
