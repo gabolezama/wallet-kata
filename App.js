@@ -5,7 +5,7 @@ import { store } from './Store/Store';
 import { Provider } from 'react-redux'; 
 import Report from './Screens/Report';
 import Operation from './Screens/Operation';
-import CurrencySelector from './Components/CurrencySelector';
+import Balance from './Components/Balance';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +15,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='home'>
           <Stack.Screen options={{title:'Wallet Kata'}} name="home" component={Home}/>
-          <Stack.Screen options={{title:'Operaciones'}} name="amount" component={Operation}/>
+          <Stack.Screen options={{title:'Operaciones'}} name="operation" component={Operation}/>
+          <Stack.Screen options={{title:'Blance'}} name="balance" component={Balance}/>
           <Stack.Screen options={{title:'Reporte de Transacciones'}} name="report" component={Report}/>
         </Stack.Navigator>
       </NavigationContainer>

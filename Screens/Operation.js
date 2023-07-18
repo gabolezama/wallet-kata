@@ -6,17 +6,17 @@ import CustomButton from '../Components/CustomButton';
 import CurrencySelector from '../Components/CurrencySelector';
 
 export default function Operation(props) {
-console.log('---->', props.route);
+
     const { route: { params: {operation: operation} } } = props;
 
     const dispatcher = useDispatch();
 
-
-
     const [currency, setCurrency] = useState('');
     const [currencyTo, setCurrencyTo] = useState('');
     const [inputValue, setInputValue] = useState('');
-    const [showCurrencies, setShowCurrencies] = useState('');
+    const [showCurrencies, setShowCurrencies] = useState(false);
+
+    const validator = operation === 'exchange'? !!currency && !!currencyTo : !!currency;
 
     const handleInputChange = (text) => {
         // Solo permitir números y el punto decimal
@@ -25,6 +25,7 @@ console.log('---->', props.route);
     };
     return (
         <View style={styles.container}>
+            <Text>Debe seleccionar las monedas e ingresar el monto para aceptar la operación.</Text>
             <Text>Indique tipo de moneda a {operation === 'deposit'? 'DEPOSITAR' : operation === 'exchange'? 'CAMBIAR' : 'EXTRAER'}</Text>
 
             { currency && operation !== 'exchange' && <Text>LA MONEDA SELLECCIONADE ES: '{currency}'</Text>}
@@ -36,15 +37,16 @@ console.log('---->', props.route);
                 keyboardType="numeric"
                 editable={operation === 'exchange'? currency !== '' && currencyTo !== '' : currency !== ''}
             />
-            {!(currency && currencyTo && !showCurrencies) && <CustomButton text={showCurrencies? 'OCULTAR LISTA' : 'VER LISTA'} execute={() => setShowCurrencies(!showCurrencies)} />}
+            {!validator && <CustomButton text={showCurrencies? 'OCULTAR LISTA' : 'VER LISTA'} execute={() => setShowCurrencies(!showCurrencies)} />}
             <CustomButton 
-                text={operation === 'deposit'? 'Depositar': operation === 'exchange'? 'Cambiar' : 'Retirar'} 
+                text={operation === 'deposit'? 'Depositar': operation === 'exchange'? 'Cambiar' : 'Retirar'}
+                disabled={!validator || inputValue === ''}
                 execute={operation !== 'exchange'? 
                 () => { dispatcher( operate(operation, currency, inputValue || 0) ); props.navigation.navigate('home');}:
                 () => { dispatcher( exchange(operation, currency, currencyTo, inputValue || 0) ); props.navigation.navigate('home');}
             }
             />
-            { showCurrencies && <CurrencySelector execute={currency === '' ? setCurrency : operation === 'exchange'? setCurrencyTo : null}/>}
+            { showCurrencies && !validator && <CurrencySelector currency={currency} execute={currency === '' ? setCurrency : operation === 'exchange'? setCurrencyTo : setCurrency}/>}
         </View>
     )
 }

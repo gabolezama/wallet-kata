@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import Balance from '../Components/Balance';
 import { useSelector } from 'react-redux';
 import CustomButton from '../Components/CustomButton';
 
 export default function Home(props) {
-    const loading = useSelector((state)=> state.loading)
-    const state = useSelector((state)=> state);
-    console.log(state);
+    const loading = useSelector((state)=> state.loading);
+
+    const[showBalance, setShowBalance] = useState(false);
+
   return (
     <View style={styles.container}>
 
@@ -19,12 +20,13 @@ export default function Home(props) {
 
         <View style={styles.subcontainer}>
             <Text>Seleccione una opcion: </Text>
-
-            <CustomButton text={'Depositar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'deposit'})}}/>
-            <CustomButton text={'Retirar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'withdraw'})}}/>
-            <CustomButton text={'Exchange'} execute={() =>{ props.navigation.navigate('amount', {operation: 'exchange'})}}/>
+            <CustomButton text={'Depositar'} execute={() =>{ props.navigation.navigate('operation', {operation: 'deposit'})}}/>
+            <CustomButton text={'Retirar'} execute={() =>{ props.navigation.navigate('operation', {operation: 'withdraw'})}}/>
+            <CustomButton text={'Exchange'} execute={() =>{ props.navigation.navigate('operation', {operation: 'exchange'})}}/>
+            <CustomButton text={'Balance'} execute={() =>{ props.navigation.navigate('balance', {operation: 'balance'})}}/>
             <CustomButton text={'Reporte'} execute={() =>{ props.navigation.navigate('report', {operation: 'report'})}}/>
         </View>
+        {showBalance && <Balance/>}
     </View>
   )
 }

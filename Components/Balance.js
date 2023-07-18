@@ -1,35 +1,32 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, FlatList } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
 export default function Balance() {
-    const ars = useSelector((state) => state.ARS);
-    const usd = useSelector((state) => state.USD);
-    const eur = useSelector((state) => state.EUR);
+    const currencies = useSelector((state) => state.currencies);
 
   return (
-    <View>
-      <Text>BALANCE EN ARS: </Text>
-      <Text style={styles.input}>{ars}</Text>
-      <Text>BALANCE EN USD: </Text>
-      <Text style={styles.input}>{usd}</Text>
-      <Text>BALANCE EN EUR: </Text>
-      <Text style={styles.input}>{eur}</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={Object.entries(currencies)}
+        renderItem={({item}) =>(
+            <View>
+                <Text>
+                    Banlance en {item[0]}: {item[1]}
+                </Text>
+            </View>
+        )}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-    input: {
+    container:{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: 60,
-        borderWidth: 1,
-        borderColor: '#000',
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        fontSize: 36
+        fontSize: 12,
+        justifyContent: 'space-around',
+        alignContent: 'space-around',
+        margin: 15
     }
 })
