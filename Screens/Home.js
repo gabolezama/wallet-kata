@@ -1,23 +1,28 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import Balance from '../Components/Balance';
+import { useSelector } from 'react-redux';
+import CustomButton from '../Components/CustomButton';
 
 export default function Home(props) {
-
+  const loading = useSelector((state)=> state.loading)
   return (
     <View style={styles.container}>
-        <Balance/>
-        <Text>Seleccione una opcion: </Text>
 
-        <TouchableOpacity style={styles.boton} onPress={() =>{ props.navigation.navigate('amount', {operation: 'deposit'})}}>
-            <Text style={styles.texto}>Depositar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.boton} onPress={() =>{ props.navigation.navigate('amount', {operation: 'withdraw'})}}>
-            <Text style={styles.texto}>Retirar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.boton} onPress={() =>{ props.navigation.navigate('amount', {operation: 'report'})}}>
-            <Text style={styles.texto}>Reporte</Text>
-        </TouchableOpacity>
+        { loading &&
+            <View style={styles.loaderContainer}>
+                <ActivityIndicator size="large" color="#00ced1" />
+            </View>
+        }
+
+        <View style={styles.subcontainer}>
+            <Balance/>
+            <Text>Seleccione una opcion: </Text>
+
+            <CustomButton text={'Depositar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'deposit'})}}/>
+            <CustomButton text={'Retirar'} execute={() =>{ props.navigation.navigate('amount', {operation: 'withdraw'})}}/>
+            <CustomButton text={'Reporte'} execute={() =>{ props.navigation.navigate('amount', {operation: 'report'})}}/>
+        </View>
     </View>
   )
 }
@@ -25,19 +30,17 @@ export default function Home(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20
+      },
+    subcontainer:{
+        flex: 1,
+        width: '100%',
+        marginTop: 50,
     },
-    boton: {
-        backgroundColor: '#007bff',
-        padding: 10,
-        borderRadius: 5,
-        margin: 10,
-    },
-    texto: {
-        color: '#fff',
-        fontSize: 18,
-        textAlign: 'center',
+    loaderContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
   });

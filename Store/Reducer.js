@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-    balance: 0
+    balance: 0,
+    loading: false
 }
 
 export const rootReducer = (state = INITIAL_STATE, action) => {
@@ -7,12 +8,17 @@ export const rootReducer = (state = INITIAL_STATE, action) => {
     case 'WITHDRAWAL_SUCCESS':
       return {
         ...state,
-        balance: balance - parseFloat(action.payload)
+        balance: state.balance - parseFloat(action.payload)
       }
     case 'DEPOSIT_SUCCESS':
       return {
         ...state,
-        balance: balance + parseFloat(action.payload)
+        balance: state.balance + parseFloat(action.payload)
+      };
+    case 'SET_LOADER':
+      return {
+        ...state,
+        loading: action.payload
       };
     default:
       return state

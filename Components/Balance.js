@@ -14,6 +14,9 @@ export default function Balance() {
 
 const styles = StyleSheet.create({
     input: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
         height: 90,
         borderWidth: 1,

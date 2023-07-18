@@ -11,9 +11,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='amount'>
-          <Stack.Screen name="amount" component={Amount}/>
+        <Stack.Navigator initialRouteName='home'>
           <Stack.Screen name="home" component={Home}/>
+          <Stack.Screen name="amount" component={Amount}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
